@@ -24,10 +24,10 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
             if (account != null) {
                 switch (account.getRole().getName().toUpperCase()) {
                     case "ADMIN":
-                        redirectURL = "/test";
+                        redirectURL = "/manager/home";
                         break;
-                    case "GUEST":
-                        redirectURL = "/front/home";
+                    case "USER":
+                        redirectURL = "/user/home";
                         break;
                     default:
                         redirectURL = "/login";
