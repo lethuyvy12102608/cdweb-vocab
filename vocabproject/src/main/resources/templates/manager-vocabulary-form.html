@@ -93,16 +93,15 @@
                                             >
                                         </div>
 
-                                        <!--                                            <div class="form-group">-->
-                                        <!--                                                <label for="inputEnglish">Subject</label>-->
-                                        <!--                                                <select class="form-control select2" id="inputRole" style="width: 100%;"-->
-                                        <!--                                                        th:field="*{subjectDTO.tittle}">-->
-                                        <!--                                                    <option th:value="0">Role Name...</option>-->
-                                        <!--                                                    <option th:each="item : ${subjectListDTO}"-->
-                                        <!--                                                            th:value="${item.id}"-->
-                                        <!--                                                            th:text="${item.tittle}"/>-->
-                                        <!--                                                </select>-->
-                                        <!--                                            </div>-->
+                                        <div class="form-group">
+                                            <label for="inputEnglish">Subject</label>
+                                            <select class="form-control select2" id="inputRole" style="width: 100%;"
+                                                    th:field="*{subjectId}">
+                                                <option th:each="item : ${subjectListDTO}"
+                                                        th:value="${item.id}"
+                                                        th:text="${item.tittle}"/>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group text-right mb-0">
