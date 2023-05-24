@@ -5,6 +5,7 @@ import com.cdweb.vocabproject.model.dto.SubjectDTO;
 import com.cdweb.vocabproject.model.entity.Account;
 import com.cdweb.vocabproject.model.entity.Subject;
 import com.cdweb.vocabproject.model.mapper.SubjectMapper;
+import com.cdweb.vocabproject.service.AccountService;
 import com.cdweb.vocabproject.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,10 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class SubjectMapperIml implements SubjectMapper {
+public class SubjectMapperImpl implements SubjectMapper {
 
     @Autowired
     private SubjectService subjectService;
+
+    @Autowired
+    private AccountService accountService;
 
     @Override
     public SubjectDTO toDTO (Subject subject){
@@ -29,7 +33,7 @@ public class SubjectMapperIml implements SubjectMapper {
         subjectDTO.setStatus(subject.isStatus());
 
         AccountDTO accountDTO = new AccountDTO();
-        Account account = new Account();
+        Account account = subject.getAccount();
         if(account!= null) {
             accountDTO.setId(account.getId());
             accountDTO.setFullName(account.getFullName());
@@ -37,6 +41,7 @@ public class SubjectMapperIml implements SubjectMapper {
             accountDTO.setUsername(account.getUsername());
             accountDTO.setStatus(account.isStatus());
         }
+        subjectDTO.setAccountId(accountDTO.getId());
         subjectDTO.setAccountDTO(accountDTO);
 
         return subjectDTO ;
@@ -60,6 +65,8 @@ public class SubjectMapperIml implements SubjectMapper {
         subject.setTittle(subjectDTO.getTittle());
         subject.setDescription(subjectDTO.getDescription());
         subject.setStatus(subjectDTO.isStatus());
+
+        subject.setAccount(accountService.findById(subjectDTO.getAccountId()));
 
         return subject;
     }
