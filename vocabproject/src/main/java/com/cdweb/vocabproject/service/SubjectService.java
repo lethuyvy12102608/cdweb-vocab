@@ -12,14 +12,10 @@ import java.util.List;
 @Service
 public class SubjectService {
 
-
-    @Autowired
-    private AccountService accountService;
-
     @Autowired
     private SubjectRepository subjectRepository;
 
-    public List<Subject> findAll() {
+        public List<Subject> findAll() {
         return subjectRepository.findAll();
     }
 
