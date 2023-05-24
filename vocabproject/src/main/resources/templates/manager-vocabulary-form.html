@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Dashboard | Adminto - Responsive Bootstrap 4 Admin Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}">
+
+    <!-- third party css -->
+    <link th:href="@{/resources/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/resources/libs/datatables/responsive.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/resources/libs/datatables/buttons.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/resources/libs/datatables/select.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <!-- third party css end -->
+
+
+    <!-- Bootstrap Css -->
+    <link th:href="@{/resources/css/bootstrap.min.css}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css"/>
+    <!-- Icons Css -->
+    <link th:href="@{/resources/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+    <!-- App Css-->
+    <link th:href="@{/resources/css/app.min.css}" id="app-stylesheet" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Topbar Start -->
+    <div th:replace="fragments/navbar-custom :: navbar-custom"></div>
+    <!-- end Topbar -->
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="page-title">Manager Vocabulary</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="/manager/home">Manager</a></li>
+                                    <li class="breadcrumb-item active">Vocabulary</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="card-title">New Vocabulary</h4>
+                            <form data-parsley-validate novalidate
+                                  method="post"
+                                  enctype="multipart/form-data"
+                                  th:action="@{/manager/vocabulary/form}"
+                                  th:object="${vocabularyDTO}"
+                            >
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="inputId">ID</label>
+                                            <input type="text" name="id" class="form-control"
+                                                   id="inputId" placeholder="..." th:field="*{id}" readonly disabled
+                                            >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEnglish">English</label>
+                                            <input type="text" name="english" class="form-control"
+                                                   id="inputEnglish" placeholder="..." th:field="*{english}"
+                                            >
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEnglish">Vietnamese</label>
+                                            <input type="text" name="english" class="form-control"
+                                                   id="inputVietnamese" placeholder="..." th:field="*{vietnamese}"
+                                            >
+                                        </div>
+
+                                        <!--                                            <div class="form-group">-->
+                                        <!--                                                <label for="inputEnglish">Subject</label>-->
+                                        <!--                                                <select class="form-control select2" id="inputRole" style="width: 100%;"-->
+                                        <!--                                                        th:field="*{subjectDTO.tittle}">-->
+                                        <!--                                                    <option th:value="0">Role Name...</option>-->
+                                        <!--                                                    <option th:each="item : ${subjectListDTO}"-->
+                                        <!--                                                            th:value="${item.id}"-->
+                                        <!--                                                            th:text="${item.tittle}"/>-->
+                                        <!--                                                </select>-->
+                                        <!--                                            </div>-->
+                                    </div>
+                                </div>
+                                <div class="form-group text-right mb-0">
+                                    <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                        Submit
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- container-fluid -->
+
+        </div> <!-- content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        2016 - 2020 &copy; Adminto theme by <a href="">Coderthemes</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+<div th:replace="fragments/footer :: footer"></div>
+
+<!-- Vendor js -->
+<script th:src="@{/resources/js/vendor.min.js}"></script>
+<!-- knob plugin -->
+<script th:src="@{/resources/libs/jquery-knob/jquery.knob.min.js}"></script>
+
+
+<!-- third party js -->
+<script th:src="@{/resources/libs/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/resources/libs/datatables/dataTables.bootstrap4.js}"></script>
+<script th:src="@{/resources/libs/datatables/dataTables.responsive.min.js}"></script>
+<script th:src="@{/resources/libs/datatables/responsive.bootstrap4.min.js}"></script>
+<script th:src="@{/resources/libs/datatables/dataTables.buttons.min.js}"></script>
+<script th:src="@{/resources/libs/datatables/buttons.bootstrap4.min.js}"></script>
+<script th:src="@{/resources/libs/datatables/buttons.html5.min.js}"></script>
+<script th:src="@{/resources/libs/datatables/buttons.flash.min.js}"></script>
+<script th:src="@{/resources/libs/datatables/buttons.print.min.js}"></script>
+<script th:src="@{/resources/libs/datatables/dataTables.keyTable.min.js}"></script>
+<script th:src="@{/resources/libs/datatables/dataTables.select.min.js}"></script>
+<script th:src="@{/resources/libs/pdfmake/pdfmake.min.js}"></script>
+<script th:src="@{/resources/libs/pdfmake/vfs_fonts.js}"></script>
+<!-- third party js ends -->
+
+
+<!--Morris Chart-->
+<script th:src="@{/resources/libs/morris-js/morris.min.js}"></script>
+<script th:src="@{/resources/libs/raphael/raphael.min.js}"></script>
+
+<!-- Dashboard init js-->
+<script th:src="@{/resources/js/pages/dashboard.init.js}"></script>
+
+<!-- App js -->
+<script th:src="@{/resources/js/app.min.js}"></script>
+
+</body>
+</html>
