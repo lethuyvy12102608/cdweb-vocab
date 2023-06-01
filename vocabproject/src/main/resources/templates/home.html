@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}">
+
+    <!-- Bootstrap Css -->
+    <link th:href="@{/resources/css/bootstrap.min.css}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css"/>
+    <!-- Icons Css -->
+    <link th:href="@{/resources/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+    <!-- App Css-->
+    <link th:href="@{/resources/css/app.min.css}" id="app-stylesheet" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body data-layout="horizontal" data-topbar="dark">
+
+<!-- Begin page -->
+<div id="wrapper">
+    <header id="topnav">
+        <!-- Topbar Start -->
+        <div th:replace="fragments/navbar-custom :: navbar-custom"></div>
+        <div th:replace="fragments/topbar-menu :: topbar-menu"></div>
+    </header>
+
+    <div class="content-page">
+        <div class="content">
+
+
+
+        </div>
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        2016 - 2020 &copy; Adminto theme by <a href="">Coderthemes</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+
+</div>
+<!-- END wrapper -->
+
+
+
+<!-- Vendor js -->
+<script th:src="@{/resources/js/vendor.min.js}"></script>
+
+<!-- knob plugin -->
+<script th:src="@{/resources/libs/jquery-knob/jquery.knob.min.js}"></script>
+
+<!--Morris Chart-->
+<script th:src="@{/resources/libs/morris-js/morris.min.js}"></script>
+<script th:src="@{/resources/libs/raphael/raphael.min.js}"></script>
+
+<!-- Dashboard init js-->
+<script th:src="@{/resources/js/pages/dashboard.init.js}"></script>
+
+<!-- App js -->
+<script th:src="@{/resources/js/app.min.js}"></script>
+
+</body>
+</html>
