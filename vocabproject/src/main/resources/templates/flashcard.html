@@ -20,7 +20,7 @@
 
         .container {
             position: relative;
-            width: 100%;
+            width: 60%;
             max-width: 960px;
             min-height: 100%;
             margin: 0 auto;
@@ -58,7 +58,7 @@
             left: 0;
             bottom: 0;
             right: 0;
-            background-color: #ecf0f1;
+            background-color: #c6edc0;
             border: 2px white solid;
             border-radius: 5px;
         }
@@ -66,13 +66,14 @@
         .front-facing .title {
             width: 100%;
             position: absolute;
-            top: 50%;
+            top: 32%;
             left: 0;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 50px;
             margin: 15px 0 0 0;
             text-align: center;
-            color: #3498db;
+            font-weight: bold;
+            color: #030202;
         }
 
         .back-facing {
@@ -87,7 +88,7 @@
             left: 0;
             bottom: 0;
             right: 0;
-            background-color: #ecf0f1;
+            background-color: #a0d7db;
             border: 2px white solid;
             border-radius: 5px;
             padding: 20px;
@@ -96,7 +97,8 @@
         }
 
         .back-facing p {
-            font-size: 14px;
+            font-size: 60px;
+            font-weight: bold;
             margin: 0;
         }
         .carousel-control-prev,
@@ -122,40 +124,41 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-interval="true" data-ride="carousel">
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <div class="container">
                                         <div class="element-card">
                                             <div class="front-facing">
-                                                <p class="title">Copper</p>
+                                                <p class="title" th:text="${firstVocab.english}"></p>
                                             </div>
                                             <div class="back-facing">
-                                                <p>Adasd</p>
+                                                <p class="title" th:text="${firstVocab.vietnamese}"> </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="carousel-item">
+<!--                                <div class="carousel-item" th:text="firstVocab">-->
+<!--                                    <div class="container">-->
+<!--                                        <div class="element-card">-->
+<!--                                            <div class="front-facing">-->
+<!--                                                <p class="title" th:text="${firstVocab.english}"></p>-->
+<!--                                            </div>-->
+<!--                                            <div class="back-facing">-->
+<!--                                                <p class="title" th:text="${firstVocab.vietnamese}"> </p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+                                <div class="carousel-item" th:each="item : ${vocabularies}">
                                     <div class="container">
                                         <div class="element-card">
                                             <div class="front-facing">
-                                                <p class="title">Copper</p>
+                                                <p class="title" th:text="${item.english}"></p>
                                             </div>
-                                            <div class="back-facing">
-                                                <p>Adasd</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="container">
-                                        <div class="element-card">
-                                            <div class="front-facing">
-                                                <p class="title">Copper</p>
-                                            </div>
-                                            <div class="back-facing">
-                                                <p>Adasd</p>
+                                             <div class="back-facing">
+                                                <p class="title" th:text="${item.vietnamese}"> </p>
                                             </div>
                                         </div>
                                     </div>
