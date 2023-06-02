@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/manager/vocabulary")
-public class VocabularyMangerController {
+public class VocabularyManagerController {
     @Autowired
     private VocabularyService vocabularyService;
 
