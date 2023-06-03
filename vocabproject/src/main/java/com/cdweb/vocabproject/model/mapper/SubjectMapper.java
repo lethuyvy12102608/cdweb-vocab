@@ -7,11 +7,9 @@ import java.util.List;
 
 
 public interface SubjectMapper {
-    public SubjectDTO toDTO(Subject subject);
+    SubjectDTO toDTO(Subject subject);
 
-    public List<SubjectDTO> toListDTO(List<Subject> subjectList);
+    List<SubjectDTO> toListDTO(List<Subject> subjectList);
 
-    public Subject toEntity(SubjectDTO subjectDTO);
-
-
+    Subject toEntity(SubjectDTO subjectDTO);
 }

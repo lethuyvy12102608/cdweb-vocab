@@ -66,7 +66,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="btn-toolbar" style="display: block">
-                                    <h3 class="btn-group">Account</h3>
+                                    <h3 class="btn-group">Subject</h3>
                                     <div class="btn-group dropdown-btn-group pull-right" style="float: right">
                                         <a type="button" class="btn btn-block btn-primary" href="/manager/subjects/form">
                                             Thêm Mới
@@ -96,6 +96,10 @@
                                         <a class="btn btn-primary btn-sm mt-2" th:href="@{'/manager/subjects/form/' + ${item.id}}">
                                             <i class="fas fa-eye"></i>
                                             Xem
+                                        </a>
+                                        <a class="btn btn-danger btn-sm mt-2"  th:href="@{'/manager/subjects/delete/' + ${item.id}}">
+                                            <i class="fe-trash"></i>
+                                            Xóa
                                         </a>
                                     </td>
                                 </tr>

@@ -44,6 +44,7 @@ public class SubjectManagerController {
         return "manager-subject-form";
 
     }
+
     @PostMapping(value ={ "/form"})
     public String saveSubject(Model model,SubjectDTO subjectDTO){
         subjectDTO.setStatus(true);
@@ -64,6 +65,23 @@ public class SubjectManagerController {
             model.addAttribute("accountListDTO", accountService.findAll());
 
             return "manager-subject-form";
+        } catch (Exception ex) {
+            return "redirect:" + redirectUrl;
+        }
+    }
+
+    @GetMapping("/delete/{id}") // /manager/accounts/form/6
+    public String deleteSubject(Model model,@PathVariable long id) {
+        String redirectUrl = "/manager/subjects";
+        try {
+            Subject subject = subjectService.findById(id);
+            if (subject == null) {
+                return "redirect:" + redirectUrl;
+            }
+            subject.setStatus(false);
+            subjectService.save(subject);
+
+            return "redirect:" + redirectUrl;
         } catch (Exception ex) {
             return "redirect:" + redirectUrl;
         }
