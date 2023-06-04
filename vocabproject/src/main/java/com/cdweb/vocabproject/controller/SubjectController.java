@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/subject")
+@RequestMapping(value = "/home")
 public class SubjectController {
 
     @Autowired
@@ -35,27 +35,41 @@ public class SubjectController {
     private AccountService accountService;
 
     @GetMapping(value = {"", "/"})
-    public String subjectPage(Model model) {
-
-        SubjectDTO subjectDTO = new SubjectDTO();
-        model.addAttribute("subjectDTO", subjectDTO);
-        Account account = accountService.findById(4);
+    public String subjectPage(Model model, Authentication authentication) {
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        Account account = customUserDetails.getAccount();
         List<Subject> subjectList = subjectService.findByAccount(account);
 
+        SubjectDTO subjectDTO = new SubjectDTO();
+
+        model.addAttribute("subjectDTO", subjectDTO);
         model.addAttribute("subjectList", subjectMapper.toListDTO(subjectList));
-        return "subject-form";
+        return "home";
     }
 
 
     @PostMapping(value = {"", "/"})
     public String saveSubject(Model model, Authentication authentication, SubjectDTO subjectDTO) {
-//        CustomUserDetails customUserDetails = (CustomUserDetails) authentication;
-//        Account account = customUserDetails.getAccount();
-//
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        Account account = customUserDetails.getAccount();
+
         Subject subject = subjectService.save(subjectMapper.toEntity(subjectDTO));
         subject.setStatus(true);
-//        subject.setAccount(account);
-        String redirect = "/subject";
+        subject.setAccount(account);
+
+        String redirect = "/home";
         return "redirect:" + redirect;
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteSubject(@PathVariable long id) {
+        String redirectUrl = "/home";
+        Subject subject = subjectService.findById(id);
+        if (subject == null) {
+            return "redirect:" + redirectUrl;
+        }
+        subject.setStatus(false);
+        subjectService.save(subject);
+        return "redirect:" + redirectUrl;
     }
 }

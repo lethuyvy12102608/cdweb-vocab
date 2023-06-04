@@ -17,6 +17,112 @@
     <!-- App Css-->
     <link th:href="@{/resources/css/app.min.css}" id="app-stylesheet" rel="stylesheet" type="text/css"/>
 
+    <style type="text/css">
+
+        .btn.btn-primary {
+            background: #38414a;
+            border-radius: 6px;
+            color: #FFFFFF;
+
+        }
+
+        .cardHover-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.6rem;
+            background: #38414a;
+            color: #FFFFFF;
+        }
+
+        .flashcard-set-container {
+            height: 100%;
+            padding: 2.2rem 1.5rem 1rem;
+            box-sizing: border-box;
+            display: flex;
+            border-radius: 1.6rem;
+            cursor: pointer;
+            position: relative;
+            transition: box-shadow .4s ease;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            flex: 1 1;
+            min-width: 0;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+        }
+
+        .subject-title {
+            color: #FFFFFF;
+            font-weight: 600;
+            height: 100%;
+            padding: 1.2rem 1.5rem 1rem;
+            box-sizing: border-box;
+            display: flex;
+            border-radius: 1.6rem;
+            cursor: pointer;
+            position: relative;
+            transition: box-shadow .4s ease;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            flex: 1 1;
+            min-width: 0;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+        }
+
+        .flashcard-term-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            flex-grow: 0.6;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flashcard-term-text {
+            color: cadetblue;
+            font-size: 16px;
+        }
+
+        .create-subject {
+            cursor: pointer;
+            background-color: #FFFFFF;
+            border-radius: 50% !important;
+            border: none;
+            color: white;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            font-size: 4.5rem;
+            position: fixed;
+            right: 3rem;
+            bottom: 5rem;
+            z-index: 2;
+        }
+
+        .create-subject i {
+            font-size: 20px;
+        }
+
+        .float-right {
+            z-index: 100;
+            float: right!important;
+            top: 14px;
+            right: 21px;
+            color: white;
+        }
+
+    </style>
 </head>
 
 <body data-layout="horizontal" data-topbar="dark">
@@ -26,43 +132,150 @@
     <header id="topnav">
         <!-- Topbar Start -->
         <div th:replace="fragments/navbar-custom :: navbar-custom"></div>
-        <div th:replace="fragments/topbar-menu :: topbar-menu"></div>
     </header>
 
     <div class="content-page">
         <div class="content">
-
-
-
-        </div>
-
-        <!-- Footer Start -->
-        <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
-                        2016 - 2020 &copy; Adminto theme by <a href="">Coderthemes</a>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="text-md-right footer-links d-none d-sm-block">
-                            <a href="javascript:void(0);">About Us</a>
-                            <a href="javascript:void(0);">Help</a>
-                            <a href="javascript:void(0);">Contact Us</a>
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="page-title">My Subject</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                    <li class="breadcrumb-item active">Subject</li>
+                                </ol>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-        <!-- end Footer -->
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary create-subject" data-toggle="modal"
+                                data-target="#exampleModal"><i class="fas fa-plus"></i>
+                        </button>
 
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">New Folder</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form th:action="@{/subject}"
+                                              th:object="${subjectDTO}"
+                                              method="post"
+                                        >
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Create folder</label>
+                                                <input type="text" class="form-control" id="recipient-name"
+                                                       th:field="*{tittle}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Description</label>
+                                                <textarea class="form-control" id="message-text"
+                                                          th:field="*{description}"></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Create</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3" th:each="item : ${subjectList}">
+                        <div class="cardHover-container">
+                            <div class="dropdown float-right">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="ti-more-alt"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a th:href="@{'/flashcard/' + ${item.id}}" class="dropdown-item">Open</a>
+                                    <!-- item-->
+                                    <a href="" class="dropdown-item">Rename</a>
+                                    <!-- item-->
+                                    <a th:href="@{'/home/delete/' + ${item.id}}" class="dropdown-item">Delete</a>
+                                    <!-- item-->
+                                    <a href="" class="dropdown-item">Get link</a>
+                                </div>
+                            </div>
+                            <div data-testid="flashcard-set-card" class="flashcard-set-container">
+                                <a th:href="'/flashcard/' + ${item.id}"><h4 class="subject-title" th:text="${item.tittle}"></h4></a>
+
+                                <div class="flashcard-term-container">
+                                    <p class="flashcard-term-text ml-3"
+                                       th:text="${item.vocabularyDTOList.size()} + ' terms'"></p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
     </div>
+
+</div>
+
+
+<!-- Footer Start -->
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                2016 - 2020 &copy; Adminto theme by <a href="">Coderthemes</a>
+            </div>
+            <div class="col-md-6">
+                <div class="text-md-right footer-links d-none d-sm-block">
+                    <a href="javascript:void(0);">About Us</a>
+                    <a href="javascript:void(0);">Help</a>
+                    <a href="javascript:void(0);">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end Footer -->
+
+</div>
 
 
 </div>
 <!-- END wrapper -->
 
+<script>
 
-
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+</script>
 <!-- Vendor js -->
 <script th:src="@{/resources/js/vendor.min.js}"></script>
 

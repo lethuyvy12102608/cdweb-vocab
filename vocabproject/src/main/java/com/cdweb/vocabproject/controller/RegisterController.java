@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 
 @Controller
 @RequestMapping(value = {"/register"})
@@ -30,36 +32,36 @@ public class RegisterController {
         model.addAttribute("accountDTO", accountDTO);
         model.addAttribute("error", null);
 
-        return "login";
+        return "register";
     }
-//    @PostMapping(value = {"", "/"})
-//    public String register(Model model, @Valid AccountDTO accountDTO, BindingResult bindingResult) {
-//        try {
-//            // validate
-//            registerValidator.validate(accountDTO, bindingResult);
-//
-//            if (bindingResult.hasErrors()) {
-//                model.addAttribute("messageDTO", new MessageDTO("error",
-//                        "Vui lòng kiểm tra lại thông tin!"));
-//                model.addAttribute("accountDTO", accountDTO);
-//                return "login";
-//            } else {
-//                // save
-//                Account account = accountService.register(accountDTO);
-//
-//                if (account != null) {
-//                    redirectUrl = "/login";
-//                    return "redirect:" + redirectUrl;
-//                }
-//
-//                model.addAttribute("messageDTO", new MessageDTO("error",
-//                        "Vui lòng kiểm tra lại thông tin!"));
-//                model.addAttribute("accountDTO", accountDTO);
-//                return "login";
-//            }
-//        } catch (Exception ex) {
-//            return "redirect:" + redirectUrl;
-//        }
-//    }
+    @PostMapping(value = {"", "/"})
+    public String register(Model model, @Valid AccountDTO accountDTO, BindingResult bindingResult) {
+        try {
+            // validate
+            registerValidator.validate(accountDTO, bindingResult);
+
+            if (bindingResult.hasErrors()) {
+                model.addAttribute("messageDTO", new MessageDTO("error",
+                        "Vui lòng kiểm tra lại thông tin!"));
+                model.addAttribute("accountDTO", accountDTO);
+                return "register";
+            } else {
+                // save
+                Account account = accountService.register(accountDTO);
+
+                if (account != null) {
+                    redirectUrl = "/login";
+                    return "redirect:" + redirectUrl;
+                }
+
+                model.addAttribute("messageDTO", new MessageDTO("error",
+                        "Vui lòng kiểm tra lại thông tin!"));
+                model.addAttribute("accountDTO", accountDTO);
+                return "login";
+            }
+        } catch (Exception ex) {
+            return "redirect:" + redirectUrl;
+        }
+    }
 
 }

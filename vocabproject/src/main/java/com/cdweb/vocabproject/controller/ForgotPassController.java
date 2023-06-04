@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/home")
-public class HomeController {
+@RequestMapping(value = {"/forgot-password"})
+public class ForgotPassController {
+
 
     @GetMapping(value = {"","/"})
-    public String homePage(Model model){
-        return "home";
+    public String ForgotPassPage(Model model){
+        return "forgot-password";
     }
 }

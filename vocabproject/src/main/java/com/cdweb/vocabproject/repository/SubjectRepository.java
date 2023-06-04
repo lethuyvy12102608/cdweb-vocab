@@ -13,5 +13,5 @@ public interface SubjectRepository extends JpaRepository<Subject,Long> {
 
     Optional<Subject> findByTittle(String tittle);
 
-    List<Subject> findByAccount(Account account);
+    List<Subject> findByAccountAndStatus(Account account, boolean status);
 }
