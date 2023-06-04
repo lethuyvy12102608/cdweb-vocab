@@ -20,7 +20,6 @@ public class RegisterValidator implements Validator {
     public void validate(Object target, Errors errors) {
         try {
             AccountDTO accountDTO = (AccountDTO) target;
-            Account account = null;
 
             // verify hoVaTen
             if (ValidatorUtil.isEmpty(accountDTO.getFullName())) {
@@ -29,14 +28,14 @@ public class RegisterValidator implements Validator {
             }
 
             // verify username
-            String email = accountDTO.getEmail();
-            if (ValidatorUtil.isEmpty(email)) {
+            String username = accountDTO.getUsername();
+            if (ValidatorUtil.isEmpty(username)) {
                 errors.rejectValue("username", "Vui lòng nhập Tên Đăng Nhập!",
                         "Vui lòng nhập Tên Đăng Nhập!");
             } else {
-                account = accountService.findByEmail(email.trim());
+                Account account = accountService.findByEmail(username.trim());
                 if (account != null && account.getEmail() != accountDTO.getEmail()) {
-                    errors.rejectValue("email", "Tên Email đã được đăng ký!",
+                    errors.rejectValue("username", "Tên Email đã được đăng ký!",
                             "Tên Email đã được đăng ký!");
                 }
             }
@@ -55,12 +54,5 @@ public class RegisterValidator implements Validator {
             errors.rejectValue("msg", "Có lỗi xảy ra, vui lòng thử lại!",
                     "Có lỗi xảy ra, vui lòng thử lại!");
         }
-
-
     }
-
-
-
-
-
 }

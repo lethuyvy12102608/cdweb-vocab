@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>Home</title>
+    <title>Flashcard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -43,6 +43,7 @@
             box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4);
             margin: 5px;
             cursor: pointer;
+
         }
 
         .element-card.open {
@@ -58,9 +59,9 @@
             left: 0;
             bottom: 0;
             right: 0;
-            background-color: #c6edc0;
+            background-color: #38414a;
             border: 2px white solid;
-            border-radius: 5px;
+            border-radius: 9px;
         }
 
         .front-facing .title {
@@ -68,12 +69,12 @@
             position: absolute;
             top: 32%;
             left: 0;
-            text-transform: uppercase;
+            /*text-transform: uppercase;*/
             font-size: 50px;
             margin: 15px 0 0 0;
             text-align: center;
             font-weight: bold;
-            color: #030202;
+            color: #FFFFFF;
         }
 
         .back-facing {
@@ -88,9 +89,9 @@
             left: 0;
             bottom: 0;
             right: 0;
-            background-color: #a0d7db;
+            background-color: #2b455e;
             border: 2px white solid;
-            border-radius: 5px;
+            border-radius: 9px;
             padding: 20px;
             text-align: center;
             overflow: hidden;
@@ -100,6 +101,7 @@
             font-size: 60px;
             font-weight: bold;
             margin: 0;
+            color: #FFFFFF;
         }
 
         .carousel-control-prev,
@@ -117,7 +119,6 @@
     <header id="topnav">
         <!-- Topbar Start -->
         <div th:replace="fragments/navbar-custom :: navbar-custom"></div>
-<!--        <div th:replace="fragments/topbar-menu :: topbar-menu"></div>-->
     </header>
 
     <div class="content-page">

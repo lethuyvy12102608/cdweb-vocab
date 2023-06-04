@@ -31,5 +31,5 @@ public class SubjectService {
         return subjectRepository.save(subject);
     }
 
-    public List<Subject> findByAccount(Account account){return subjectRepository.findByAccount(account);}
+    public List<Subject> findByAccount(Account account){return subjectRepository.findByAccountAndStatus(account, true);}
 }

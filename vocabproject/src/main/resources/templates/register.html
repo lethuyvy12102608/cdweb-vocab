@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Register | Adminto - Responsive Bootstrap 4 Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}">
+
+    <!-- Bootstrap Css -->
+    <link th:href="@{/resources/css/bootstrap.min.css}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link th:href="@{/resources/css/icons.min.css}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link th:href="@{/resources/css/app.min.css}" id="app-stylesheet" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        body.authentication-bg {
+            background-image: none ;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body class="authentication-bg">
+
+<div class="account-pages mt-5 mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="text-center">
+                    <a href="/index" class="logo">
+                        <img th:src="@{/resources/images/logo-light.png}" alt="" height="22" class="logo-light mx-auto">
+                        <img th:src="@{/resources/images/logo-dark.png}" alt="" height="22" class="logo-dark mx-auto">
+                    </a>
+                    <p class="text-muted mt-2 mb-4">Responsive Admin Dashboard</p>
+                </div>
+                <div class="card">
+
+                    <div class="card-body p-4">
+
+                        <div class="text-center mb-4">
+                            <h4 class="text-uppercase mt-0">Register</h4>
+                        </div>
+
+                        <form th:action="@{/register}" th:object="${accountDTO}" method="post">
+
+                            <div class="form-group">
+                                <label for="fullname">Full Name</label>
+                                <input class="form-control" type="text" id="fullname" placeholder="Enter your name"  th:field="*{fullName}" required>
+                                <p class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailaddress">Email address</label>
+                                <input class="form-control" type="email" id="emailaddress"  placeholder="Enter your email" th:field="*{username}" required>
+                                <p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input class="form-control" type="password" required id="password" placeholder="Enter your password" th:field="*{password}">
+                                <p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkbox-signup">
+                                    <label class="custom-control-label" for="checkbox-signup">I accept <a href="javascript: void(0);" class="text-dark">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                            <div class="form-group mb-0 text-center">
+                                <button class="btn btn-primary btn-block" type="submit"> Register </button>
+                            </div>
+
+                        </form>
+
+                    </div> <!-- end card-body -->
+                </div>
+                <!-- end card -->
+
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p class="text-muted">Already have account?  <a href="/login" class="text-dark ml-1"><b>Register</b></a></p>
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>
+<!-- end page -->
+
+
+<!-- Vendor js -->
+<script th:src="@{/resourcesjs/vendor.min.js}"></script>
+
+<!-- App js -->
+<script th:src="@{/resourcesjs/app.min.js}"></script>
+
+</body>
+</html>

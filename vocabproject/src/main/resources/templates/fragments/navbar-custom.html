@@ -51,7 +51,7 @@
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="/index" class="dropdown-item notify-item">
                         <i class="fe-log-out"></i>
                         <span>Logout</span>
                     </a>
@@ -70,20 +70,20 @@
 
         <!-- LOGO -->
         <div class="logo-box">
-            <a href="index.html" class="logo logo-dark text-center">
+            <a href="/home" class="logo logo-dark text-center">
                         <span class="logo-lg">
-                            <img src="images/logo-dark.png" alt="" height="16">
+                            <img th:src="@{resources/images/logo-dark.png}" alt="" height="16">
                         </span>
                 <span class="logo-sm">
-                            <img src="images/logo-sm.png" alt="" height="24">
+                            <img th:src="@{resources/images/logo-sm.png}" alt="" height="24">
                         </span>
             </a>
-            <a href="index.html" class="logo logo-light text-center">
+            <a href="/home" class="logo logo-light text-center">
                         <span class="logo-lg">
-                            <img src="images/logo-light.png" alt="" height="16">
+                            <img th:src="@{resources/images/logo-light.png}" alt="" height="16">
                         </span>
                 <span class="logo-sm">
-                            <img src="images/logo-sm.png" alt="" height="24">
+                            <img th:src="@{resources/images/logo-sm.png}" alt="" height="24">
                         </span>
             </a>
         </div>
@@ -95,9 +95,6 @@
                 </button>
             </li>
 
-            <li>
-                <h4 class="page-title-main">Dashboard</h4>
-            </li>
 
         </ul>
 

@@ -27,7 +27,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
                         redirectURL = "/manager/home";
                         break;
                     case "USER":
-                        redirectURL = "/user/home";
+                        redirectURL = "/home";
                         break;
                     default:
                         redirectURL = "/login";

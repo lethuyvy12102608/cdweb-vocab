@@ -17,11 +17,6 @@
     <!-- App Css-->
     <link th:href="@{/resources/css/app.min.css}" id="app-stylesheet" rel="stylesheet" type="text/css"/>
 
-    <style type="text/css">
-
-
-
-    </style>
 
 </head>
 
@@ -44,12 +39,12 @@
                     <div class="col-sm-8">
                         <div class="bg-picture card-box">
                             <div class="profile-info-name">
-                                <img src="assets/images/profile.jpg"
+                                <img th:src="@{resources/assets/images/profile.jpg}"
                                      class="rounded-circle avatar-xl img-thumbnail float-left mr-3" alt="profile-image">
 
                                 <div class="profile-info-detail overflow-hidden">
-                                    <h4 class="m-0">Alexandra Clarkson</h4>
-                                    <p class="text-muted"><i>Web Designer</i></p>
+                                    <h4 class="m-0" th:if="${user}!= null" th:text="${user.fullName}"></h4>
+                                    <p class="text-muted"> <i class="ti-email" th:if="${user}!= null" th:text="' '+${user.email}"></i></p>
 
 
                                     <ul class="social-list list-inline mt-3 mb-0">
@@ -107,18 +102,18 @@
                                 </div>
                             </div>
 
-                            <h4 class="header-title mt-0 mb-3">My Team Members</h4>
+                            <h4 class="header-title mt-0 mb-3">Following</h4>
 
                             <ul class="list-group mb-0 user-list">
                                 <li class="list-group-item">
                                     <a href="#" class="user-list-item">
                                         <div class="user avatar-sm float-left mr-2">
-                                            <img src="assets/images/users/user-2.jpg" alt=""
+                                            <img th:src="@{resources/images/users/user-2.jpg}" alt=""
                                                  class="img-fluid rounded-circle">
                                         </div>
                                         <div class="user-desc">
                                             <h5 class="name mt-0 mb-1">Michael Zenaty</h5>
-                                            <p class="desc text-muted mb-0 font-12">CEO</p>
+                                            <p class="desc text-muted mb-0 font-12">Michael@gmail.com</p>
                                         </div>
                                     </a>
                                 </li>
@@ -126,12 +121,12 @@
                                 <li class="list-group-item">
                                     <a href="#" class="user-list-item">
                                         <div class="user avatar-sm float-left mr-2">
-                                            <img src="assets/images/users/user-3.jpg" alt=""
+                                            <img th:src="@{resources/images/users/user-3.jpg}" alt=""
                                                  class="img-fluid rounded-circle">
                                         </div>
                                         <div class="user-desc">
                                             <h5 class="name mt-0 mb-1">James Neon</h5>
-                                            <p class="desc text-muted mb-0 font-12">Web Designer</p>
+                                            <p class="desc text-muted mb-0 font-12">James@gmail.com</p>
                                         </div>
                                     </a>
                                 </li>
@@ -139,12 +134,12 @@
                                 <li class="list-group-item">
                                     <a href="#" class="user-list-item">
                                         <div class="user avatar-sm float-left mr-2">
-                                            <img src="assets/images/users/user-5.jpg" alt=""
+                                            <img th:src="@{resources/images/users/user-5.jpg}" alt=""
                                                  class="img-fluid rounded-circle">
                                         </div>
                                         <div class="user-desc">
                                             <h5 class="name mt-0 mb-1">John Smith</h5>
-                                            <p class="desc text-muted mb-0 font-12">Web Developer</p>
+                                            <p class="desc text-muted mb-0 font-12">John@gmail.com</p>
                                         </div>
                                     </a>
                                 </li>
@@ -152,12 +147,12 @@
                                 <li class="list-group-item">
                                     <a href="#" class="user-list-item">
                                         <div class="user avatar-sm float-left mr-2">
-                                            <img src="assets/images/users/user-6.jpg" alt=""
+                                            <img th:src="@{resources/images/users/user-6.jpg}" alt=""
                                                  class="img-fluid rounded-circle">
                                         </div>
                                         <div class="user-desc">
                                             <h5 class="name mt-0 mb-1">Michael Zenaty</h5>
-                                            <p class="desc text-muted mb-0 font-12">Programmer</p>
+                                            <p class="desc text-muted mb-0 font-12">Michael@gmail.com</p>
                                         </div>
                                     </a>
                                 </li>
@@ -165,12 +160,12 @@
                                 <li class="list-group-item">
                                     <a href="#" class="user-list-item">
                                         <div class="user avatar-sm float-left mr-2">
-                                            <img src="assets/images/users/user-1.jpg" alt=""
+                                            <img th:src="@{resources/images/users/user-1.jpg}" alt=""
                                                  class="img-fluid rounded-circle">
                                         </div>
                                         <div class="user-desc">
                                             <h5 class="name mt-0 mb-1">Mat Helme</h5>
-                                            <p class="desc text-muted mb-0 font-12">Manager</p>
+                                            <p class="desc text-muted mb-0 font-12">Mat@gmail.com</p>
                                         </div>
                                     </a>
                                 </li>
