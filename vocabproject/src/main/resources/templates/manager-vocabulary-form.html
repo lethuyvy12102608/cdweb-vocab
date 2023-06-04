@@ -49,12 +49,19 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="page-title">Manager Vocabulary</h4>
+                            <h4 class="page-title"
+                                th:text="#{manager.vocabulary}"
+                            ></h4>
+
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="/manager/home">Manager</a></li>
-                                    <li class="breadcrumb-item active">Vocabulary</li>
+                                    <li class="breadcrumb-item"><a href="/manager/home" th:text="#{label.manager}"
+                                    ></a></li>
+
+                                    <li class="breadcrumb-item active"
+                                        th:text="#{label.vocabulary}"
+                                    ></li>
                                 </ol>
                             </div>
 
@@ -64,7 +71,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
-                            <h4 class="card-title">New Vocabulary</h4>
+                            <h4 class="card-title"
+                                th:text="#{label.newVocabulary}"
+                            ></h4>
                             <form data-parsley-validate novalidate
                                   method="post"
                                   enctype="multipart/form-data"
@@ -80,21 +89,27 @@
                                             >
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputEnglish">English</label>
+                                            <label for="inputEnglish"
+                                                   th:text="#{label.english}"
+                                            ></label>
                                             <input type="text" name="english" class="form-control"
                                                    id="inputEnglish" placeholder="..." th:field="*{english}"
                                             >
 
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputEnglish">Vietnamese</label>
+                                            <label for="inputEnglish"
+                                                   th:text="#{label.vietnamese}"
+                                            ></label>
                                             <input type="text" name="english" class="form-control"
                                                    id="inputVietnamese" placeholder="..." th:field="*{vietnamese}"
                                             >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="inputEnglish">Subject</label>
+                                            <label for="inputEnglish"
+                                                   th:text="#{label.subject}"
+                                            ></label>
                                             <select class="form-control select2" id="inputRole" style="width: 100%;"
                                                     th:field="*{subjectId}">
                                                 <option th:each="item : ${subjectListDTO}"
@@ -105,8 +120,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-right mb-0">
-                                    <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
-                                        Submit
+                                    <button class="btn btn-primary waves-effect waves-light mr-1" type="submit"
+                                            th:text="#{button.submit}"
+                                    >
                                     </button>
                                 </div>
 

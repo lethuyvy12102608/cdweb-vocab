@@ -53,6 +53,8 @@ public class VocabularyManagerController {
         Vocabulary vocabulary = vocabularyService.save(vocabularyMapper.toEntity(vocabularyDTO));
         String redirectUrl = "/manager/vocabulary/";
 
+
+
         return "redirect:" + redirectUrl;
     }
 

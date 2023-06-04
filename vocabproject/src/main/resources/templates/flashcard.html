@@ -101,6 +101,7 @@
             font-weight: bold;
             margin: 0;
         }
+
         .carousel-control-prev,
         .carousel-control-next {
             border: none;
@@ -116,13 +117,18 @@
     <header id="topnav">
         <!-- Topbar Start -->
         <div th:replace="fragments/navbar-custom :: navbar-custom"></div>
-        <div th:replace="fragments/topbar-menu :: topbar-menu"></div>
+<!--        <div th:replace="fragments/topbar-menu :: topbar-menu"></div>-->
     </header>
 
     <div class="content-page">
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-12">
+                        <a type="button" class="btn btn-block btn-primary" href="/flashcard/1/edit">
+                            Thêm Mới
+                        </a>
+                    </div>
                     <div class="col-12">
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
@@ -133,32 +139,19 @@
                                                 <p class="title" th:text="${firstVocab.english}"></p>
                                             </div>
                                             <div class="back-facing">
-                                                <p class="title" th:text="${firstVocab.vietnamese}"> </p>
+                                                <p class="title" th:text="${firstVocab.vietnamese}"></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-<!--                                <div class="carousel-item" th:text="firstVocab">-->
-<!--                                    <div class="container">-->
-<!--                                        <div class="element-card">-->
-<!--                                            <div class="front-facing">-->
-<!--                                                <p class="title" th:text="${firstVocab.english}"></p>-->
-<!--                                            </div>-->
-<!--                                            <div class="back-facing">-->
-<!--                                                <p class="title" th:text="${firstVocab.vietnamese}"> </p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
                                 <div class="carousel-item" th:each="item : ${vocabularies}">
                                     <div class="container">
                                         <div class="element-card">
                                             <div class="front-facing">
                                                 <p class="title" th:text="${item.english}"></p>
                                             </div>
-                                             <div class="back-facing">
-                                                <p class="title" th:text="${item.vietnamese}"> </p>
+                                            <div class="back-facing">
+                                                <p class="title" th:text="${item.vietnamese}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -174,8 +167,45 @@
                             </button>
                         </div>
 
+
                     </div>
                 </div>
+                <div class="row">
+
+                    <div class="col-12">
+                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+                            <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>English</th>
+                                <th>Vietnamese</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${vocabulariesDTO}">
+                                <td th:text="${item.id}"></td>
+                                <td th:text="${item.english}"></td>
+                                <td th:text="${item.vietnamese}"></td>
+                                <td th:text="${item.subjectDTO.tittle}"></td>
+                                <td th:text="${item.status}"></td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>#ID</th>
+                                <th>English</th>
+                                <th>Vietnamese</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
@@ -236,7 +266,6 @@
         });
 
     });
-
 </script>
 </body>
 </html>

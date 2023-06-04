@@ -49,12 +49,17 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="page-title">Manager Account</h4>
+                            <h4 class="page-title"
+                                th:text="#{label.manager}"
+                            ></h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="/manager/home">Manager</a></li>
-                                    <li class="breadcrumb-item active">Account</li>
+                                    <li class="breadcrumb-item"><a href="/manager/home" th:text="#{label.manager}"></a></li>
+                                    <li class="breadcrumb-item active"
+                                        th:text="#{label.account}"
+                                    ></li>
+
                                 </ol>
                             </div>
 
@@ -64,7 +69,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
-                            <h4 class="card-title">New Account</h4>
+                            <h4 class="card-title"
+                                th:text="#{label.newAccount}"
+                            ></h4>
                             <form data-parsley-validate novalidate
                                   method="post"
                                   enctype="multipart/form-data"
@@ -80,25 +87,32 @@
                                                    id="inputId" placeholder="..." th:field="*{id}" readonly disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="username">Username*</label>
+                                            <label for="username"
+                                                   th:text="#{label.username}"
+                                            ></label>
+
                                             <input type="text" name="username" parsley-trigger="change" required
-                                                   placeholder="Enter username" class="form-control" id="username"
+                                                    class="form-control" id="username"
                                                    th:classappend="${#fields.hasErrors('username')} ? 'is-invalid' : ''"
                                                    th:field="*{username}"
                                             >
                                             <p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="emailAddress">Email address*</label>
+                                            <label for="emailAddress"
+                                                   th:text="#{label.emailAdress}"
+                                            ></label>
                                             <input type="email" name="email" parsley-trigger="change" required
-                                                   placeholder="Enter email" class="form-control" id="emailAddress"
+                                                   class="form-control" id="emailAddress"
                                                    th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''"
                                                    th:field="*{email}"
                                             >
                                         </div>
                                         <div class="form-group">
-                                            <label for="pass1">Password*</label>
-                                            <input id="pass1" type="password" placeholder="Password" required
+                                            <label for="pass1"
+                                                   th:text="#{label.password}"
+                                            ></label>
+                                            <input id="pass1" type="password" required
                                                    th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''"
                                                    th:field="*{password}"
                                                    class="form-control">
@@ -106,15 +120,19 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="fullName">Full Name</label>
-                                            <input id="fullName" type="text" placeholder="Full Name" required
+                                            <label for="fullName"
+                                                   th:text="#{label.fullname}"
+                                            ></label>
+                                            <input id="fullName" type="text" required
                                                    th:classappend="${#fields.hasErrors('fullName')} ? 'is-invalid' : ''"
                                                    th:field="*{fullName}"
                                                    class="form-control">
                                             <p class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputRole">Role</label>
+                                            <label for="inputRole"
+                                                   th:text="#{label.role}"
+                                            ></label>
                                             <select class="form-control select2" id="inputRole" style="width: 100%;"
                                                     th:classappend="${#fields.hasErrors('role')} ? 'is-invalid' : ''"
                                                     th:field="*{role}">
@@ -127,7 +145,9 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="inputStatus">Trạng Thái</label>
+                                            <label for="inputStatus"
+                                                   th:text="#{label.status}"
+                                            ></label>
                                             <select id="inputStatus" class="form-control select2" style="width: 100%;"
                                                     th:field="*{status}">
                                                 <option value="true">Kích Hoạt</option>
@@ -138,8 +158,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-right mb-0">
-                                    <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
-                                        Submit
+                                    <button class="btn btn-primary waves-effect waves-light mr-1" type="submit"
+                                            th:text="#{button.submit}"
+                                    >
                                     </button>
                                 </div>
 

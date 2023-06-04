@@ -1,6 +1,5 @@
 package com.cdweb.vocabproject.controller;
 
-import com.cdweb.vocabproject.model.dto.VocabularyDTO;
 import com.cdweb.vocabproject.model.entity.Subject;
 import com.cdweb.vocabproject.model.entity.Vocabulary;
 import com.cdweb.vocabproject.model.mapper.SubjectMapper;
@@ -12,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,12 +33,20 @@ public class FlashcardController {
     private SubjectMapper subjectMapper;
 
     @GetMapping("/{subjectId}")
-    public String flashcardHome(Model model, @PathVariable long subjectId){
+    public String flashcardHome(Model model, @PathVariable long subjectId) {
         Subject subject = subjectService.findById(subjectId);
         List<Vocabulary> vocabularies = vocabularyService.findBySubject(subject);
+        model.addAttribute("vocabulariesDTO", vocabularyMapper.toListDTO(vocabularies));
         model.addAttribute("firstVocab", vocabularies.get(0));
         vocabularies.remove(0);
         model.addAttribute("vocabularies", vocabularies);
         return "flashcard";
     }
+
+    @RequestMapping("/{subjectId}/edit")
+    public String editFlashcard(Model model, @PathVariable long subjectId) {
+        return "edit-flashcard";
+    }
+
+
 }
