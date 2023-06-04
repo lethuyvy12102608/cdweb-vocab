@@ -33,7 +33,9 @@ public class AccountService {
     public Account findByUsername(String username) {
         return accountRepository.findByUsername(username).orElse(null);
     }
-
+    public Account findByEmail(String email) {
+        return accountRepository.findByEmail(email).orElse(null);
+    }
     public Account save(AccountDTO accountDTO) {
         if (accountDTO == null) {
             return null;
@@ -63,4 +65,28 @@ public class AccountService {
 
         return accountRepository.save(account);
     }
+    public Account register(AccountDTO accountDTO) {
+        if (accountDTO == null) {
+            return null;
+        }
+
+        Account account = new Account();
+        // role
+        Role role = roleService.findByName("USER");
+        account.setRole(role);
+
+        // account
+        account.setId(accountDTO.getId());
+        account.setFullName(accountDTO.getFullName().trim());
+        account.setUsername(accountDTO.getUsername().trim());
+        String encodedPassword = passwordEncoder.encode(accountDTO.getPassword());
+        account.setPassword(encodedPassword);
+        account.setEmail(accountDTO.getUsername().trim());
+        account.setStatus(true);
+
+        return accountRepository.save(account);
+    }
+
+
+
 }

@@ -15,7 +15,7 @@ public class SubjectService {
     @Autowired
     private SubjectRepository subjectRepository;
 
-        public List<Subject> findAll() {
+    public List<Subject> findAll() {
         return subjectRepository.findAll();
     }
 
@@ -30,4 +30,6 @@ public class SubjectService {
     public Subject save(Subject subject){
         return subjectRepository.save(subject);
     }
+
+    public List<Subject> findByAccount(Account account){return subjectRepository.findByAccount(account);}
 }

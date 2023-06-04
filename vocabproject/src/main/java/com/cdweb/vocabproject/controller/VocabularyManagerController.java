@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -53,5 +54,42 @@ public class VocabularyManagerController {
         String redirectUrl = "/manager/vocabulary/";
 
         return "redirect:" + redirectUrl;
+    }
+
+
+    @GetMapping("/form/{id}")
+    public String editSubject(Model model,@PathVariable long id) {
+        String redirectUrl = "/manager/vocabulary";
+        try {
+            Vocabulary vocabulary = vocabularyService.findById(id);
+
+            if (vocabulary == null) {
+                return "redirect:" + redirectUrl;
+            }
+            model.addAttribute("vocabulary", vocabularyMapper.toDTO(vocabulary));
+            model.addAttribute("SubjectListDTO", subjectService.findAll());
+
+            return "manager-subject-form";
+        } catch (Exception ex) {
+            return "redirect:" + redirectUrl;
+        }
+    }
+
+    @GetMapping("/delete/{id}") // /manager/accounts/form/6
+    public String deleteSubject(Model model,@PathVariable long id) {
+        String redirectUrl = "/manager/vocabulary";
+        try {
+            Vocabulary vocabulary = vocabularyService.findById(id);
+
+            if (vocabulary == null) {
+                return "redirect:" + redirectUrl;
+            }
+            vocabulary.setStatus(false);
+            vocabularyService.save(vocabulary);
+
+            return "redirect:" + redirectUrl;
+        } catch (Exception ex) {
+            return "redirect:" + redirectUrl;
+        }
     }
 }

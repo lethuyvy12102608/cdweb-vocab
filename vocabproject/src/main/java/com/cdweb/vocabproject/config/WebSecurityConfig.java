@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/*","/flashcard/**","/manager/**", "/login/**", "/register/**", "/forgot-password/**").permitAll()
+                .antMatchers("/*","/subject","/flashcard/**","/manager/**", "/login/**", "/register/**", "/forgot-password/**").permitAll()
 
 //                .antMatchers("/manager/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/user/**").hasAnyAuthority("GUEST")
