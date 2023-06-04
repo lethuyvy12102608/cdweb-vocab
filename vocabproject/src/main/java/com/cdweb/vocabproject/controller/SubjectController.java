@@ -4,6 +4,7 @@ import com.cdweb.vocabproject.model.dto.SubjectDTO;
 import com.cdweb.vocabproject.model.entity.Account;
 import com.cdweb.vocabproject.model.entity.Subject;
 import com.cdweb.vocabproject.model.entity.Vocabulary;
+import com.cdweb.vocabproject.model.mapper.AccountMapper;
 import com.cdweb.vocabproject.model.mapper.SubjectMapper;
 import com.cdweb.vocabproject.service.AccountService;
 import com.cdweb.vocabproject.service.CustomUserDetails;
@@ -32,7 +33,7 @@ public class SubjectController {
     private SubjectMapper subjectMapper;
 
     @Autowired
-    private AccountService accountService;
+    private AccountMapper accountMapper;
 
     @GetMapping(value = {"", "/"})
     public String subjectPage(Model model, Authentication authentication) {
@@ -53,9 +54,9 @@ public class SubjectController {
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         Account account = customUserDetails.getAccount();
 
-        Subject subject = subjectService.save(subjectMapper.toEntity(subjectDTO));
-        subject.setStatus(true);
-        subject.setAccount(account);
+        subjectDTO.setStatus(true);
+        subjectDTO.setAccountId(account.getId());
+        subjectService.save(subjectMapper.toEntity(subjectDTO));
 
         String redirect = "/home";
         return "redirect:" + redirect;
