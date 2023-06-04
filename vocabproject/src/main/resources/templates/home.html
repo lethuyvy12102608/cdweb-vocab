@@ -116,7 +116,7 @@
 
         .float-right {
             z-index: 100;
-            float: right!important;
+            float: right !important;
             top: 14px;
             right: 21px;
             color: white;
@@ -202,22 +202,30 @@
                     <div class="col-md-4 mb-3" th:each="item : ${subjectList}">
                         <div class="cardHover-container">
                             <div class="dropdown float-right">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown"
+                                   aria-expanded="false">
                                     <i class="ti-more-alt"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <!-- item-->
-                                    <a th:href="@{'/flashcard/' + ${item.id}}" class="dropdown-item">Open</a>
+                                    <!--                                    <a type="button" class="btn btn-block btn-primary"-->
+                                    <!--                                       href="/manager/vocabulary/form"-->
+                                    <!--                                       th:text="#{button.add}">-->
+
+                                    <!--                                    </a>-->
+
+                                    <a th:href="@{'/flashcard/'+ ${item.id}}" class="dropdown-item">Open</a>
                                     <!-- item-->
-                                    <a href="" class="dropdown-item">Rename</a>
-                                    <!-- item-->
-                                    <a th:href="@{'/home/delete/' + ${item.id}}" class="dropdown-item">Delete</a>
-                                    <!-- item-->
-                                    <a href="" class="dropdown-item">Get link</a>
+                                    <!--                                    <a href="" class="dropdown-item">Rename</a>-->
+                                    <!--                                    &lt;!&ndash; item&ndash;&gt;-->
+                                    <!--                                    <a th:href="@{'/home/delete/' + ${item.id}}" class="dropdown-item">Delete</a>-->
+                                    <!--                                    &lt;!&ndash; item&ndash;&gt;-->
+                                    <!--                                    <a href="" class="dropdown-item">Get link</a>-->
                                 </div>
                             </div>
                             <div data-testid="flashcard-set-card" class="flashcard-set-container">
-                                <a th:href="'/flashcard/' + ${item.id}"><h4 class="subject-title" th:text="${item.tittle}"></h4></a>
+                                <a th:href="'/flashcard/' + ${item.id}"><h4 class="subject-title"
+                                                                            th:text="${item.tittle}"></h4></a>
 
                                 <div class="flashcard-term-container">
                                     <p class="flashcard-term-text ml-3"
