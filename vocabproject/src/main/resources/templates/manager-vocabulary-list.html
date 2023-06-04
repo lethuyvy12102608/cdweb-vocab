@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
+
     <title>Dashboard | Adminto - Responsive Bootstrap 4 Admin Dashboard</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
     <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     <!-- third party css -->
     <link th:href="@{/resources/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
@@ -43,18 +47,25 @@
 
     <div class="content-page">
         <div class="content">
-
+<!--            <div>-->
+<!--                <a href="/manager/vocabulary?lang=vi">VI</a>|<a href="/manager/vocabulary?lang=en">EN</a>-->
+<!--            </div>-->
             <!-- Start Content-->
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="page-title">Manager Vocabulary</h4>
+                            <h4 class="page-title"
+                                th:text="#{manager.vocabulary}"
+                            ></h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="/manager/home">Manager</a></li>
-                                    <li class="breadcrumb-item active">Vocabulary</li>
+                                    <li class="breadcrumb-item"><a href="/manager/home" th:text="#{label.manager}"
+                                    ></a></li>
+                                    <li class="breadcrumb-item active"
+                                        th:text="#{label.vocabulary}"
+                                    ></li>
                                 </ol>
                             </div>
 
@@ -66,11 +77,14 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="btn-toolbar" style="display: block">
-                                    <h3 class="btn-group">Vocabulary</h3>
+                                    <h3 class="btn-group"
+                                        th:text="#{label.vocabulary}">
+                                    ></h3>
                                     <div class="btn-group dropdown-btn-group pull-right" style="float: right">
                                         <a type="button" class="btn btn-block btn-primary"
-                                           href="/manager/vocabulary/form">
-                                            Thêm Mới
+                                           href="/manager/vocabulary/form"
+                                           th:text="#{button.add}">
+
                                         </a>
                                     </div>
                                 </div>
@@ -80,11 +94,11 @@
                                 <thead>
                                 <tr>
                                     <th>#ID</th>
-                                    <th>English</th>
-                                    <th>Vietnamese</th>
-                                    <th>Subject</th>
-                                    <th>Status</th>
-                                    <th>Option</th>
+                                    <th th:text="#{column.english}"></th>
+                                    <th th:text="#{column.vietnamese}"></th>
+                                    <th th:text="#{column.subject}"></th>
+                                    <th th:text="#{column.status}"></th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -97,14 +111,16 @@
 
                                     <td>
                                         <a class="btn btn-primary btn-sm mt-2"
-                                           th:href="@{'/manager/vocabulary/form/' + ${item.id}}">
+                                           th:href="@{'/manager/vocabulary/form/' + ${item.id}}"
+                                           th:text="#{button.view}"
+                                        >
                                             <i class="fas fa-eye"></i>
-                                            Xem
                                         </a>
                                         <a class="btn btn-danger btn-sm mt-2"
-                                           th:href="@{'/manager/vocabulary/delete/' + ${item.id}}">
+                                           th:href="@{'/manager/vocabulary/delete/' + ${item.id}}"
+                                           th:text="#{button.delete}"
+                                        >
                                             <i class="fe-trash"></i>
-                                            Xóa
                                         </a>
                                     </td>
                                 </tr>
@@ -112,17 +128,17 @@
                                 <tfoot>
                                 <tr>
                                     <th>#ID</th>
-                                    <th>English</th>
-                                    <th>Vietnamese</th>
-                                    <th>Subject</th>
-                                    <th>Status</th>
-                                    <th>Option</th>
+                                    <th th:text="#{column.english}"></th>
+                                    <th th:text="#{column.vietnamese}"></th>
+                                    <th th:text="#{column.subject}"></th>
+                                    <th th:text="#{column.status}"></th>
                                 </tr>
                                 </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
+
             </div> <!-- container-fluid -->
 
         </div> <!-- content -->
