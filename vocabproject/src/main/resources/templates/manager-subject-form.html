@@ -49,12 +49,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="page-title">Manager Subject</h4>
+                            <h4 class="page-title"
+                                th:text="#{manager.subject}"
+                            ></h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="/manager/home">Manager</a></li>
-                                    <li class="breadcrumb-item active">Subject</li>
+                                    <li class="breadcrumb-item"><a href="/manager/home" th:text="#{label.manager}"></a></li>
+                                    <li class="breadcrumb-item active" th:text="#{label.subject}"></li>
                                 </ol>
                             </div>
 
@@ -64,7 +66,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
-                            <h4 class="card-title">New Subject</h4>
+                            <h4 class="card-title" th:text="#{label.newSubject}"></h4>
                             <form data-parsley-validate novalidate
                                   method="post"
                                   enctype="multipart/form-data"
@@ -76,18 +78,17 @@
                                         <div class="form-group">
                                             <label for="inputId">ID</label>
                                             <input type="text" name="id" class="form-control"
-                                                   th:classappend="${#fields.hasErrors('id')} ? 'is-invalid' : ''"
-                                                   id="inputId" placeholder="..." th:field="*{id}" readonly disabled>
+                                                   id="inputId" th:field="*{id}" readonly disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="tittle">Tittle</label>
+                                            <label for="tittle" th:text="#{label.tittle}"></label>
                                             <input type="text" name="tittle" parsley-trigger="change" required
                                                    placeholder="Enter tittle" class="form-control" id="tittle"
                                                    th:field="*{tittle}"
                                             >
                                         </div>
                                         <div class="form-group">
-                                            <label for="description">Description</label>
+                                            <label for="description" th:text="#{label.description}"></label>
                                             <input type="text" name="description" parsley-trigger="change" required
                                                    placeholder="Enter description" class="form-control" id="description"
                                                    th:field="*{description}"
@@ -95,7 +96,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="inputAccount">Account</label>
+                                            <label for="inputAccount" th:text="#{label.account}"></label>
                                             <select class="form-control select2" id="inputAccount" style="width: 100%;"
                                                     th:field="*{accountId}">
                                                 <option th:value="0">Account Username...</option>
@@ -109,8 +110,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-right mb-0">
-                                    <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
-                                        Submit
+                                    <button class="btn btn-primary waves-effect waves-light mr-1" type="submit" th:text="#{button.submit}">
                                     </button>
                                 </div>
 
