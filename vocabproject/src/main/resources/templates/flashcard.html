@@ -169,13 +169,123 @@
 <!-- Begin page -->
 <div id="wrapper">
     <header id="topnav">
-        <!-- Topbar Start -->
-        <div th:replace="fragments/navbar-custom :: navbar-custom"></div>
+        <div class="navbar-custom">
+            <ul class="list-unstyled topnav-menu float-right mb-0">
+
+                <li class="d-none d-sm-block">
+                    <form class="app-search">
+                        <div class="app-search-box">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <button class="btn" type="submit">
+                                        <i class="fe-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+
+                <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#"
+                       role="button" aria-haspopup="false" aria-expanded="false">
+                        <img th:src="@{resources/images/users/user-1.jpg}" alt="user-image" class="rounded-circle">
+                        <span class="pro-user-name ml-1" th:if="${user}!= null" th:text="${user.fullName}">
+                        <i class="mdi mdi-chevron-down"></i>
+                            </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+
+                        <!-- item-->
+                        <a href="/profile" class="dropdown-item notify-item">
+                            <i class="fe-user"></i>
+                            <span>My Account</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="fe-settings"></i>
+                            <span>Settings</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="fe-lock"></i>
+                            <span>Lock Screen</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- item-->
+                        <a href="/index" class="dropdown-item notify-item">
+                            <i class="fe-log-out"></i>
+                            <span>Logout</span>
+                        </a>
+
+                    </div>
+                </li>
+
+                <li class="dropdown notification-list">
+                    <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect">
+                        <i class="fe-settings noti-icon"></i>
+                    </a>
+                </li>
+
+
+            </ul>
+
+            <!-- LOGO -->
+            <div class="logo-box">
+                <a href="/home" class="logo logo-dark text-center">
+                        <span class="logo-lg">
+                            <img th:src="@{resources/images/logo-dark.png}" alt="" height="16">
+                        </span>
+                    <span class="logo-sm">
+                            <img th:src="@{resources/images/logo-sm.png}" alt="" height="24">
+                        </span>
+                </a>
+                <a href="/home" class="logo logo-light text-center">
+                        <span class="logo-lg">
+                            <img th:src="@{resources/images/logo-light.png}" alt="" height="16">
+                        </span>
+                    <span class="logo-sm">
+                            <img th:src="@{resources/images/logo-sm.png}" alt="" height="24">
+                        </span>
+                </a>
+            </div>
+
+            <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
+                <li>
+                    <button class="button-menu-mobile disable-btn waves-effect">
+                        <i class="fe-menu"></i>
+                    </button>
+                </li>
+
+
+            </ul>
+
+        </div>
     </header>
 
     <div class="content-page">
         <div class="content">
             <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="page-title">My flashcard</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                    <li class="breadcrumb-item active" th:text="${title}"></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
 
@@ -233,7 +343,9 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">New Vocabulary</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"
+                                            th:text="#{button.add}"
+                                        ></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -270,10 +382,10 @@
                             <thead>
                             <tr>
                                 <th>#ID</th>
-                                <th>English</th>
-                                <th>Vietnamese</th>
-                                <th>Subject</th>
-                                <th>Status</th>
+                                <th th:text="#{column.english}"></th>
+                                <th th:text="#{column.vietnamese}"></th>
+                                <th th:text="#{column.subject}"></th>
+                                <th th:text="#{column.status}"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -288,10 +400,10 @@
                             <tfoot>
                             <tr>
                                 <th>#ID</th>
-                                <th>English</th>
-                                <th>Vietnamese</th>
-                                <th>Subject</th>
-                                <th>Status</th>
+                                <th th:text="#{column.english}"></th>
+                                <th th:text="#{column.vietnamese}"></th>
+                                <th th:text="#{column.subject}"></th>
+                                <th th:text="#{column.status}"></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -326,6 +438,7 @@
 
 
 </div>
+
 <!-- END wrapper -->
 
 

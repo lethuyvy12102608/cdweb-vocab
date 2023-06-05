@@ -1,105 +1,385 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml"
-      xmlns:text-align="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
     <meta charset="utf-8"/>
-    <style>
-
-
-    </style>
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- App favicon -->
     <link rel="shortcut icon" th:href="@{/resources/images/favicon.ico}">
 
+    <!-- Bootstrap Css -->
     <link th:href="@{/resources/css/bootstrap.min.css}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css"/>
-
+    <!-- Icons Css -->
     <link th:href="@{/resources/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+    <!-- App Css-->
     <link th:href="@{/resources/css/app.min.css}" id="app-stylesheet" rel="stylesheet" type="text/css"/>
 
+    <style type="text/css">
+
+        .btn.btn-primary {
+            background: #38414a;
+            border-radius: 6px;
+            color: #FFFFFF;
+
+        }
+
+        .cardHover-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.6rem;
+            background: #38414a;
+            color: #FFFFFF;
+        }
+
+        .flashcard-set-container {
+            height: 100%;
+            padding: 2.2rem 1.5rem 1rem;
+            box-sizing: border-box;
+            display: flex;
+            border-radius: 1.6rem;
+            cursor: pointer;
+            position: relative;
+            transition: box-shadow .4s ease;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            flex: 1 1;
+            min-width: 0;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+        }
+
+        .subject-title {
+            color: #FFFFFF;
+            font-weight: 600;
+            height: 100%;
+            padding: 1.2rem 1.5rem 1rem;
+            box-sizing: border-box;
+            display: flex;
+            border-radius: 1.6rem;
+            cursor: pointer;
+            position: relative;
+            transition: box-shadow .4s ease;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            flex: 1 1;
+            min-width: 0;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+        }
+
+        .flashcard-term-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            flex-grow: 0.6;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flashcard-term-text {
+            color: cadetblue;
+            font-size: 16px;
+        }
+
+        .create-subject {
+            cursor: pointer;
+            background-color: #FFFFFF;
+            border-radius: 50% !important;
+            border: none;
+            color: white;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            font-size: 4.5rem;
+            position: fixed;
+            right: 3rem;
+            bottom: 5rem;
+            z-index: 2;
+        }
+
+        .create-subject i {
+            font-size: 20px;
+        }
+
+        .float-right {
+            z-index: 100;
+            float: right !important;
+            top: 14px;
+            right: 21px;
+            color: white;
+        }
+
+    </style>
 </head>
 
 <body data-layout="horizontal" data-topbar="dark">
 
+<!-- Begin page -->
 <div id="wrapper">
     <header id="topnav">
-        <div th:replace="fragments/navbar-custom :: navbar-custom"></div>
+        <div class="navbar-custom">
+            <ul class="list-unstyled topnav-menu float-right mb-0">
+
+                <li class="d-none d-sm-block">
+                    <form class="app-search">
+                        <div class="app-search-box">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <button class="btn" type="submit">
+                                        <i class="fe-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+
+                <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#"
+                       role="button" aria-haspopup="false" aria-expanded="false">
+                        <img th:src="@{resources/images/users/user-1.jpg}" alt="user-image" class="rounded-circle">
+                        <span class="pro-user-name ml-1" th:if="${user}!= null" th:text="${user.fullName}">
+                        <i class="mdi mdi-chevron-down"></i>
+                            </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+
+                        <!-- item-->
+                        <a href="/profile" class="dropdown-item notify-item">
+                            <i class="fe-user"></i>
+                            <span>My Account</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="fe-settings"></i>
+                            <span>Settings</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="fe-lock"></i>
+                            <span>Lock Screen</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- item-->
+                        <a href="/index" class="dropdown-item notify-item">
+                            <i class="fe-log-out"></i>
+                            <span>Logout</span>
+                        </a>
+
+                    </div>
+                </li>
+
+                <li class="dropdown notification-list">
+                    <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect">
+                        <i class="fe-settings noti-icon"></i>
+                    </a>
+                </li>
+
+
+            </ul>
+
+            <!-- LOGO -->
+            <div class="logo-box">
+                <a href="/flashcard/1/edit" class="logo logo-dark text-center">
+                        <span class="logo-lg">
+                            <img th:src="@{resources/images/logo-dark.png}" alt="" height="16">
+                        </span>
+                    <span class="logo-sm">
+                            <img th:src="@{resources/images/logo-sm.png}" alt="" height="24">
+                        </span>
+                </a>
+                <a href="/flashcard/1/edit" class="logo logo-light text-center">
+                        <span class="logo-lg">
+                            <img th:src="@{resources/images/logo-light.png}" alt="" height="16">
+                        </span>
+                    <span class="logo-sm">
+                            <img th:src="@{resources/images/logo-sm.png}" alt="" height="24">
+                        </span>
+                </a>
+            </div>
+
+            <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
+                <li>
+                    <button class="button-menu-mobile disable-btn waves-effect">
+                        <i class="fe-menu"></i>
+                    </button>
+                </li>
+
+
+            </ul>
+
+        </div>
+        <!-- Topbar Start -->
     </header>
 
     <div class="content-page">
-        <div id="input-box">
-            <div class="row row1">
-                <div class=col-6>
-                    <label>Title</label>
-                    <input type="text" size=50></input>
-                </div>
-                <div class=col-6>
-                    <label>Description</label>
-                    <input type="text" size=50></input>
-                </div>
-
-            </div>
-        </div>
-
-        <div class=" container rounded-3 border border-2 border-dark my-5 bg-white" style="height:auto;">
-            <div>
-                <h1 class=" h1">Add/remove flashcard</h1>
-                <div class="row">
-                    <div class=" col-5">
-                        <input class=" py-3 form-control" placeholder="input your task" type="text"
-                               id="inputText">
-                    </div>
-                    <div class="col-5">
-                        <input class=" py-3 form-control" placeholder="input your task" type="text"
-                               id="inputText1">
-                    </div>
-                    <div class="col-2">
-                        <!-- <i onclick="addList()" class=" btn btn-dark rounded-pill fas fa-4x fa-plus-circle "></i> -->
-                        <button onclick="addList()" class=" mt-2 btn btn-dark"> Add</button>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row rounded bg-white">
-                <div class=" col-12">
-                    <ul class=" list-group" id="list"></ul>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Footer Start -->
-        <footer class="footer">
+        <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
-                        2016 - 2020 &copy; Adminto theme by <a href="">Coderthemes</a>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="text-md-right footer-links d-none d-sm-block">
-                            <a href="javascript:void(0);">About Us</a>
-                            <a href="javascript:void(0);">Help</a>
-                            <a href="javascript:void(0);">Contact Us</a>
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="page-title">My Subject</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                    <li class="breadcrumb-item active">Subject</li>
+                                </ol>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-        <!-- end Footer -->
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary create-subject" data-toggle="modal"
+                                data-target="#exampleModal"><i class="fas fa-plus"></i>
+                        </button>
 
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">New Folder</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form th:action="@{/home}"
+                                              th:object="${subjectDTO}"
+                                              method="post"
+                                        >
+                                            <!--                                            <div class="form-group">-->
+                                            <!--                                                <label for="recipient-name" class="col-form-label">Create folder</label>-->
+                                            <!--                                                <input type="text" class="form-control" id="recipient-name"-->
+                                            <!--                                                       th:field="*{tittle}">-->
+                                            <!--                                            </div>-->
+                                            <!--                                            <div class="form-group">-->
+                                            <!--                                                <label for="message-text" class="col-form-label">Description</label>-->
+                                            <!--                                                <textarea class="form-control" id="message-text"-->
+                                            <!--                                                          th:field="*{description}"></textarea>-->
+                                            <!--                                            </div>-->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Create</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3" th:each="item : ${subjectList}">
+                        <div class="cardHover-container">
+                            <div class="dropdown float-right">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <i class="ti-more-alt"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <!--                                    <a type="button" class="btn btn-block btn-primary"-->
+                                    <!--                                       href="/manager/vocabulary/form"-->
+                                    <!--                                       th:text="#{button.add}">-->
+
+                                    <!--                                    </a>-->
+
+                                    <a th:href="@{'/flashcard/'+ ${item.id}}" class="dropdown-item">Open</a>
+                                    <!-- item-->
+                                    <!--                                    <a href="" class="dropdown-item">Rename</a>-->
+                                    <!--                                    &lt;!&ndash; item&ndash;&gt;-->
+                                    <!--                                    <a th:href="@{'/home/delete/' + ${item.id}}" class="dropdown-item">Delete</a>-->
+                                    <!--                                    &lt;!&ndash; item&ndash;&gt;-->
+                                    <!--                                    <a href="" class="dropdown-item">Get link</a>-->
+                                </div>
+                            </div>
+                            <div data-testid="flashcard-set-card" class="flashcard-set-container">
+                                <a th:href="'/flashcard/' + ${item.id}"><h4 class="subject-title"
+                                                                            th:text="${item.tittle}"></h4></a>
+
+                                <div class="flashcard-term-container">
+                                    <p class="flashcard-term-text ml-3"
+                                       th:text="${item.vocabularyDTOList.size()} + ' terms'"></p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
     </div>
+
+</div>
+
+
+<!-- Footer Start -->
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                2016 - 2020 &copy; Adminto theme by <a href="">Coderthemes</a>
+            </div>
+            <div class="col-md-6">
+                <div class="text-md-right footer-links d-none d-sm-block">
+                    <a href="javascript:void(0);">About Us</a>
+                    <a href="javascript:void(0);">Help</a>
+                    <a href="javascript:void(0);">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end Footer -->
+
+</div>
 
 
 </div>
 <!-- END wrapper -->
 
-<script rel="stylesheet" th:src="@{/resources/js/editflash.js}"></script>
+<script>
 
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+</script>
 <!-- Vendor js -->
 <script th:src="@{/resources/js/vendor.min.js}"></script>
 
@@ -112,7 +392,6 @@
 
 <!-- Dashboard init js-->
 <script th:src="@{/resources/js/pages/dashboard.init.js}"></script>
-
 
 <!-- App js -->
 <script th:src="@{/resources/js/app.min.js}"></script>

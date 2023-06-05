@@ -207,20 +207,17 @@
                                     <i class="ti-more-alt"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <!--                                    <a type="button" class="btn btn-block btn-primary"-->
-                                    <!--                                       href="/manager/vocabulary/form"-->
-                                    <!--                                       th:text="#{button.add}">-->
+                                    item
+                                    <a type="button" class="btn btn-block btn-primary"
+                                       href="/manager/vocabulary/form"
+                                       th:text="#{button.add}">
 
-                                    <!--                                    </a>-->
+                                    </a>
 
                                     <a th:href="@{'/flashcard/'+ ${item.id}}" class="dropdown-item">Open</a>
                                     <!-- item-->
-                                    <!--                                    <a href="" class="dropdown-item">Rename</a>-->
-                                    <!--                                    &lt;!&ndash; item&ndash;&gt;-->
-                                    <!--                                    <a th:href="@{'/home/delete/' + ${item.id}}" class="dropdown-item">Delete</a>-->
-                                    <!--                                    &lt;!&ndash; item&ndash;&gt;-->
-                                    <!--                                    <a href="" class="dropdown-item">Get link</a>-->
+                                    <a th:href="@{'/home/delete/' + ${item.id}}" class="dropdown-item">Delete</a>
+                                    <!-- item-->
                                 </div>
                             </div>
                             <div data-testid="flashcard-set-card" class="flashcard-set-container">
@@ -266,9 +263,44 @@
 </footer>
 <!-- end Footer -->
 
-</div>
 
+<div th:fragment="footer">
+    <!-- Right Sidebar -->
+    <div class="right-bar">
+        <div class="rightbar-title">
+            <a href="javascript:void(0);" class="right-bar-toggle float-right">
+                <i class="mdi mdi-close"></i>
+            </a>
+            <h4 class="font-16 m-0 text-white">Theme Customizer</h4>
+        </div>
+        <div class="slimscroll-menu">
 
+            <div class="p-3">
+                <div class="alert alert-warning" role="alert">
+                    <strong>Customize </strong> the overall color scheme, layout, etc.
+                </div>
+                <div class="mb-2">
+                    <img src="assets/images/layouts/light.png" class="img-fluid img-thumbnail" alt="">
+                </div>
+                <div class="custom-control custom-switch mb-3">
+                    <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked/>
+                    <label class="custom-control-label" for="light-mode-switch"><a
+                            href="/manager/home?lang=vi">VI</a></label>
+                </div>
+
+                <div class="custom-control custom-switch mb-3">
+                    <input type="checkbox" class="custom-control-input theme-choice" id="rtl-mode-switch"/>
+                    <label class="custom-control-label" for="rtl-mode-switch"><a
+                            href="/manager/home?lang=en">EN</a></label>
+                </div>
+
+            </div>
+        </div> <!-- end slimscroll-menu-->
+    </div>
+    <!-- /Right-bar -->
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
 </div>
 <!-- END wrapper -->
 
