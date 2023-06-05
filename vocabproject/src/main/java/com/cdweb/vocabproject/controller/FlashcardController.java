@@ -41,7 +41,8 @@ public class FlashcardController {
             model.addAttribute("firstVocab", vocabularies.get(0));
             vocabularies.remove(0);
             model.addAttribute("vocabularyDTO", vocabulary);
-            model.addAttribute("vocabularies", vocabularies);
+            model.addAttribute("title", subject.getTittle());
+            model.addAttribute("vocabularies", vocabularyMapper.toListDTO(vocabularies));
             return "flashcard";
         }
         model.addAttribute("subjectId", subjectId);

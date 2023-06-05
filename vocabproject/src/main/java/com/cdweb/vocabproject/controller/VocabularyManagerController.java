@@ -43,7 +43,7 @@ public class VocabularyManagerController {
 
         model.addAttribute("vocabularyDTO", vocabularyDTO);
         model.addAttribute("subjectListDTO", subjects);
-        return "manager-vocabulary-form";
+        return "manager-vocabulary-form"     ;
 
     }
 

@@ -45,7 +45,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        exposeDirectory("photos", ConstantUtil.PATH_FILE_UPLOAD, registry);
+        exposeDirectory("images", ConstantUtil.PATH_FILE_UPLOAD, registry);
 
         // register resource handler for images
         registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/")
