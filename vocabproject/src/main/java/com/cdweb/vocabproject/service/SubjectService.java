@@ -19,6 +19,10 @@ public class SubjectService {
         return subjectRepository.findAll();
     }
 
+    public List<Subject> findByStatus() {
+        return subjectRepository.findByStatus(true);
+    }
+
     public Subject findById(long subjectId) {
         return subjectRepository.findById(subjectId).orElse(null);
     }
@@ -31,5 +35,5 @@ public class SubjectService {
         return subjectRepository.save(subject);
     }
 
-    public List<Subject> findByAccount(Account account){return subjectRepository.findByAccountAndStatus(account, true);}
+    public List<Subject> findByAccount(Account account){return subjectRepository.findByAccountAndStatusIsTrue(account);}
 }

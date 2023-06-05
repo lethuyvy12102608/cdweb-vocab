@@ -39,11 +39,11 @@ public class VocabularyManagerController {
     @GetMapping(value = {"/form/", "/form"})
     public String newVocabulary(Model model) {
         VocabularyDTO vocabularyDTO = new VocabularyDTO();
-        List<Subject> subjects = subjectService.findAll();
+        List<Subject> subjects = subjectService.findByStatus();
 
         model.addAttribute("vocabularyDTO", vocabularyDTO);
         model.addAttribute("subjectListDTO", subjects);
-        return "manager-vocabulary-form"     ;
+        return "manager-vocabulary-form";
 
     }
 
@@ -52,15 +52,12 @@ public class VocabularyManagerController {
         vocabularyDTO.setStatus(true);
         Vocabulary vocabulary = vocabularyService.save(vocabularyMapper.toEntity(vocabularyDTO));
         String redirectUrl = "/manager/vocabulary/";
-
-
-
         return "redirect:" + redirectUrl;
     }
 
 
     @GetMapping("/form/{id}")
-    public String editSubject(Model model,@PathVariable long id) {
+    public String editSubject(Model model, @PathVariable long id) {
         String redirectUrl = "/manager/vocabulary";
         try {
             Vocabulary vocabulary = vocabularyService.findById(id);
@@ -68,10 +65,10 @@ public class VocabularyManagerController {
             if (vocabulary == null) {
                 return "redirect:" + redirectUrl;
             }
-            model.addAttribute("vocabulary", vocabularyMapper.toDTO(vocabulary));
-            model.addAttribute("SubjectListDTO", subjectService.findAll());
+            model.addAttribute("vocabularyDTO", vocabularyMapper.toDTO(vocabulary));
+            model.addAttribute("subjectListDTO", subjectService.findAll());
 
-            return "manager-subject-form";
+            return "manager-vocabulary-form";
         } catch (Exception ex) {
             return "redirect:" + redirectUrl;
         }

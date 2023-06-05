@@ -71,8 +71,7 @@
                                   method="post"
                                   enctype="multipart/form-data"
                                   th:action="@{/manager/subjects/form}"
-                                  th:object="${subjectDTO}"
-                            >
+                                  th:object="${subjectDTO}">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -102,7 +101,7 @@
                                                 <option th:value="0">Account Username...</option>
                                                 <option th:each="item : ${accountListDTO}"
                                                         th:value="${item.id}"
-                                                        th:text="${item.username}"/>
+                                                        th:text="${item.fullName}"/>
                                             </select>
                                         </div>
 
@@ -110,6 +109,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-right mb-0">
+                                    <input type="hidden" name="description" parsley-trigger="change"
+                                           th:field="*{status}"
+                                    >
                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="submit" th:text="#{button.submit}">
                                     </button>
                                 </div>

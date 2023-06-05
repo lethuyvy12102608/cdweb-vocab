@@ -47,9 +47,16 @@ public class SubjectManagerController {
 
     @PostMapping(value ={ "/form"})
     public String saveSubject(Model model,SubjectDTO subjectDTO){
-        subjectDTO.setStatus(true);
-        Subject subject = subjectService.save(subjectMapper.toEntity(subjectDTO));
-        String redirectUrl = "/manager/subjects/form/" + subject.getId();
+        Subject subject = subjectService.findById(subjectDTO.getId());
+
+        if (subject != null) {
+            subjectService.save(subject);
+        } else {
+            subjectDTO.setStatus(true);
+            subjectService.save(subjectMapper.toEntity(subjectDTO));
+        }
+
+        String redirectUrl = "/manager/subjects/form/" + subjectDTO.getId();
         return "redirect:" + redirectUrl;
 
     }
